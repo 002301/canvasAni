@@ -26,7 +26,7 @@ import Gravity from './components/Gravity.vue'
 import Code from './components/Code.vue'
 import { reactive,ref } from 'vue'
 
-const selectNum = ref(2);
+const selectNum = ref(0);
 const navList=[
   'GlitchArt',
   'LineCanvas',
