@@ -1,10 +1,11 @@
 import initCanvas from './initCanvas'
 let canvas, context, particles, numParticles, minDist, springAmount,
-width,height
+width,height,className
 
 function Gravity(dom){
     canvas = initCanvas(dom);
     context = canvas.getContext('2d');
+    className = canvas.parentNode.className
     particles = [],
     numParticles = 60,
     minDist = 80,
@@ -25,6 +26,7 @@ function Gravity(dom){
       particles.push(ball);
     }
     render();
+  console.log(canvas.parentNode.className);
 }
 function render(){
   context.clearRect(0, 0, width, height);
@@ -32,7 +34,14 @@ function render(){
     move(item,index);
     draw(item)
   });
-  requestAnimationFrame(render);
+  // console.log(canvas.parentNode);
+  if (document.querySelector('.' + className)){
+    requestAnimationFrame(render);
+  }else{del()}
+}
+function del(){
+  canvas=context=null;
+  console.log('del')
 }
 function gravaite(ballA, ballB) {
   var dx = ballB.x - ballA.x;

@@ -12,8 +12,10 @@ Gravity('.gravity');
 import Code from './Code.vue'
 import {Gravity} from '../canvasAin';
 import { onMounted } from 'vue';
+let demo;
   onMounted(()=>{
-    Gravity('.gravity');
+    demo = Gravity('.gravity');
+    console.log('demo',demo);
   })
 </script>
 

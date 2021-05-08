@@ -1,12 +1,12 @@
 
 let GlitchArt = (dom, url, maxoffset = 10)=> {
-      let _canvas = null,
-  _ctx = null,
-  _dom = dom,
-  _maxoffset = maxoffset,
+    let _canvas = null,
+    _ctx = null,
+    _dom = dom,
+    _maxoffset = maxoffset,
 
   initCanvas = (dom) =>{
-    _dom = document.querySelector(dom);
+    _dom = getDom();
     // console.log(this._dom.getBoundingClientRect())
     _canvas = document.createElement('canvas');
     _dom.appendChild(_canvas);
@@ -22,6 +22,12 @@ let GlitchArt = (dom, url, maxoffset = 10)=> {
     } else {
       console.log('canvas null')
     }
+  },
+  getDom = ()=>{
+    return document.querySelector(dom)
+  },
+  del=()=>{
+    _canvas = _ctx= null;
   },
   setBg = (url)=>{
     let img = new Image();
@@ -44,6 +50,10 @@ let GlitchArt = (dom, url, maxoffset = 10)=> {
     let totalTime = 450;
     let currentTime = 0;
     const render = ()=>{
+      if(!getDom()){
+        del();
+        return;
+      }
       setTimeout(() => {
         if (currentTime < totalTime) {
           draw(img);

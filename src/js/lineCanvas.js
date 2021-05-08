@@ -369,10 +369,10 @@ class lineCanvas {
       this.canvas.style.backgroundColor = 'black';
       this.canvas.style.top = '0';
       this.canvas.style.left = '0';
-      this._dom = document.querySelector(dom)
-      this._dom.appendChild(this.canvas);
+      this._dom = this.getDom(dom);
+      this._dom().appendChild(this.canvas);
     }
-    let { width: cssWidth, height: cssHeight } = this._dom.getBoundingClientRect();
+    let { width: cssWidth, height: cssHeight } = this._dom().getBoundingClientRect();
     this.ctx = this.canvas.getContext("2d");
     console.log(cssWidth, cssHeight)
     this.width = this.canvas.width = cssWidth;
@@ -396,8 +396,16 @@ class lineCanvas {
       this.shapes_array.push(s);
     }
   }
-
+  getDom(dom){
+    return ()=>{
+      return document.querySelector(dom);
+    } 
+  }
   render() {
+    if (!this._dom()){
+      this.del();
+      return;
+    }
     this.ctx.clearRect(0, 0, this.width, this.height);
     for (let i = 0; i < this.shapes_array.length; i++) {
       this.shapes_array[i].render();
@@ -409,7 +417,10 @@ class lineCanvas {
     });
     
   }
-
+  del(){
+    console.log('del')
+    this.canvas = this.ctx = null;
+  }
   drawFPS() {
     const ctx = this.ctx;
     ctx.save();
