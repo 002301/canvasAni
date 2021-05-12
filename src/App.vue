@@ -14,6 +14,7 @@
       <GlitchArt v-if="selectNum==0"></GlitchArt>
       <LineCanvas v-if="selectNum==1"></LineCanvas>
       <Gravity v-if="selectNum==2"></Gravity>
+      <Particle v-if="selectNum==3"></Particle>
     </div>
   </div>
 </template>
@@ -24,6 +25,7 @@ import GlitchArt from './components/GlitchArt.vue'
 import LineCanvas from './components/LineCanvas.vue'
 import Gravity from './components/Gravity.vue'
 import Code from './components/Code.vue'
+import Particle from './components/Particle.vue'
 import { reactive,ref } from 'vue'
 
 const selectNum = ref(0);
@@ -31,6 +33,7 @@ const navList=[
   'GlitchArt',
   'LineCanvas',
   'Gravity',
+  'Particle',
 
 ]
 const onLiClick = (e)=>{
